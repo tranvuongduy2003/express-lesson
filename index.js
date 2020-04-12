@@ -3,12 +3,22 @@ var app = express();
 
 var port = 3000;
 
-app.get('/', function(request, response) {
-	response.send('Hello Coders.Tokyo');
+app.set('views', './views');
+app.set('view engine', 'pug');
+
+app.get('/', function(req, res) {
+	res.render('index', {
+		name: 'ABC'
+	});
 });
 
-app.get('/users', function(request, response) {
-	response.send('Users list');
+app.get('/users', function(req, res) {
+	res.render('users/index', {
+		users: [
+			{ id: 1, name: 'Thinh' },
+			{ id: 2, name: 'Nam' }
+		]
+	});
 });
 
 app.listen(port, function() {
