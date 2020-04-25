@@ -3,16 +3,22 @@ extends ../layouts/common.pug
 block content		
 	h1 Users list
 
-	a(href="users/create") Creat user
+	a(class="btn btn btn-primary", href="users/create") Creat user
 
-	form(class="form-inline", action="/users/search", method="GET")
-		div(class="form-group mx-sm-3 m-2")
-			input(type="text", class="form-control", name="q")
-		button(class="btn btn-success mb-mt-2") Search
+	form(class="form-inline mb-3 mt-3", action="/users/search", method="GET")
+		div(class="form-group")
+			input(type="text", class="form-control", name="q" value=inputValue)
+		button(class="btn btn-success ml-2") Search
 
-	ul(class="list-group mr-2 ml-2")
+	table.table
+		tr
+			th Name
+			th Phone
+			th Actions
+
 		each user in users
-			li(class="list-group-item")
-				span= user.name
-				span &nbsp;
-				a(href="/users/" + user.id) View 
+			tr
+				td= user.name
+				td= user.phone
+				td
+					a(class="btn btn btn-info", href="/users/" + user.id) View 
