@@ -23,6 +23,7 @@ module.exports.search = function(req, res) {
 
 module.exports.create = function(req, res) {
 	res.render('users/create');
+	console.log(req.cookies);
 };
 
 module.exports.get = function(req, res) {
@@ -42,4 +43,9 @@ module.exports.postCreate = function(req, res) {
 
 	db.get('users').push(req.body).write();
 	res.redirect('/users');
+};
+
+module.exports.cookie = function(req, res) {
+	res.cookie('user-id', 12312);
+	res.send('Hello');
 };
