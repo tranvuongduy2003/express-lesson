@@ -3,6 +3,10 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 var userRoute = require('./routes/user.route');
+var authRoute = require('./routes/auth.route');
+
+var authMiddlewares = require('./middlewares/auth.middlewares');
+
 
 var port = 3000;
 
@@ -22,7 +26,8 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.use('/users', userRoute);
+app.use('/users', authMiddlewares.requireAuth, userRoute);
+app.use('/auth', authRoute);
 
 app.listen(port, function() {
  console.log('Sever listening on port ' + port);
