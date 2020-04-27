@@ -13,7 +13,7 @@ var port = 3000;
 var app = express();
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cookieParser());
+app.use(cookieParser('1y234895672367c5627854781n26c'));
 
 app.use(express.static('public'));
 

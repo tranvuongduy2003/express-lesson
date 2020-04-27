@@ -13,6 +13,8 @@ html
 						a.nav-link(href='/') Home
 					li.nav-item
 						a.nav-link(href='/users') Users
+			if user
+				h5= user.name
 
 		.container.mt-5
 			block content
