@@ -1,0 +1,30 @@
+extends ../layouts/common.pug
+
+block content
+	form(class="form-inline mb-3 mt-3", action="/users/search", method="GET")
+		h1.d-inline-block Products
+		div(class="form-group ml-auto")
+			input(type="text", class="form-control", name="q" value=inputValue)
+			button(class="btn btn-success ml-2") Search
+	.row
+		each product in products
+			.col-sm-6.col-md-4.col-lg-3
+				.card.mb-3
+					img.card-img-top(src=product.image)/
+					.card-body
+						h5.card-title= product.name
+						p.card-text= product.description
+						a.btn.btn-primary(href='#') Add to cart
+
+	nav(aria-label='Page navigation example')
+		ul.pagination.justify-content-end
+			li(class='page-item '+hidePrevious)
+				a.page-link(href='products?page='+(page-1).toString(), tabindex='-1') Previous
+			li.page-item
+				a.page-link(href='products?page='+(page-1).toString())= page - 1
+			li.page-item
+				a.page-link(href='products?page='+(page))= page 
+			li.page-item
+				a.page-link(href='products?page='+(page+1).toString())= page + 1
+			li(class='page-item '+hideNext)
+				a.page-link(href='products?page='+(page+1).toString()) Next

@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 
 var userRoute = require('./routes/user.route');
 var authRoute = require('./routes/auth.route');
+var productRoute = require('./routes/product.route');
+
 
 var authMiddlewares = require('./middlewares/auth.middlewares');
 
@@ -30,6 +32,7 @@ app.get('/', function(req, res) {
 
 app.use('/users', authMiddlewares.requireAuth, userRoute);
 app.use('/auth', authRoute);
+app.use('/products', productRoute);
 
 app.listen(port, function() {
  console.log('Sever listening on port ' + port);
